@@ -19,7 +19,7 @@ public class Emprestimo {
 
 	public void setLivro(Livro livro) {
 		if (livro == null) {
-			throw new RuntimeException("Livro inválido");
+			throw new RuntimeException("Livro inválido.");
 		}
 		this.livro = livro;
 	}
@@ -30,7 +30,7 @@ public class Emprestimo {
 
 	public void setUsuario(Usuario usuario) {
 		if (usuario == null) {
-			throw new RuntimeException("Usuário inválido");
+			throw new RuntimeException("Usuário inválido.");
 		}
 		this.usuario = usuario;
 	}

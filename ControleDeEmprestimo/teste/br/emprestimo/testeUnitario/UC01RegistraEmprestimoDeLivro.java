@@ -52,7 +52,7 @@ public class UC01RegistraEmprestimoDeLivro {
 	@Test
 	public void CT03UC01FB_registrar_emprestimo_com_dados_invalidos() {
 		try {
-			servico.empresta(null, usuario);
+			servico.empresta(livro, null);
 			fail("deveria lançar uma exceção");
 		} catch (RuntimeException e) {
 			assertEquals("Dados inválidos.", e.getMessage());
@@ -60,7 +60,17 @@ public class UC01RegistraEmprestimoDeLivro {
 	}
 
 	@Test
-	public void CT04UC01FB_registrar_emprestimo_com_sucesso_validacao_da_data() {
+	public void CT04UC01FB_registrar_emprestimo_com_dados_invalidos() {
+		try {
+			servico.empresta(null, null);
+			fail("deveria lançar uma exceção");
+		} catch (RuntimeException e) {
+			assertEquals("Dados inválidos.", e.getMessage());
+		}
+	}
+
+	@Test
+	public void CT05UC01FB_registrar_emprestimo_com_sucesso_validacao_da_data() {
 		// acao
 		DateTimeFormatter fmt = DateTimeFormat.forPattern("dd/MM/YYYY");
 		String dataEsperada = new DateTime().plusDays(8).toString(fmt);
@@ -71,12 +81,12 @@ public class UC01RegistraEmprestimoDeLivro {
 	}
 
 	@Test(expected = RuntimeException.class)
-	public void CT05UC01FB_registrar_emprestimo_com_data_invalida() {
+	public void CT06UC01FB_registrar_emprestimo_com_data_invalida() {
 		assertFalse(emprestimo.validaData("33/02/2000"));
 	}
-	
+
 	@Test(expected = RuntimeException.class)
-	public void CT06UC06CadastrarLivro_com_livro_invalido_nulo() {
+	public void CT07UC06CadastrarLivro_com_livro_data_emprestimo_invalida() {
 		try {
 			emprestimo.setDataEmprestimo("12-1-2009");
 			fail("Deveria lançar uma exceção.");
@@ -86,7 +96,7 @@ public class UC01RegistraEmprestimoDeLivro {
 	}
 
 	@Test(expected = RuntimeException.class)
-	public void CT07UC06CadastrarLivro_com_livro_invalido_nulo() {
+	public void CT08UC06CadastrarLivro_com_livro_invalido_nulo() {
 		try {
 			emprestimo.setLivro(null);
 			fail("Deveria lançar uma exceção.");
@@ -94,14 +104,14 @@ public class UC01RegistraEmprestimoDeLivro {
 			assertEquals("Livro inválido.", e.getMessage());
 		}
 	}
-	
+
 	@Test
-	public void CT08UC06CadastrarLivro_com_livro_valido() {
+	public void CT09UC06CadastrarLivro_com_livro_valido() {
 		assertEquals(livro, emprestimo.getLivro());
 	}
 
 	@Test(expected = RuntimeException.class)
-	public void CT09UC06CadastrarLivro_com_usuario_invalido_nulo() {
+	public void CT10UC06CadastrarLivro_com_usuario_invalido_nulo() {
 		try {
 			emprestimo.setUsuario(null);
 			fail("Deveria lançar uma exceção.");
@@ -109,9 +119,9 @@ public class UC01RegistraEmprestimoDeLivro {
 			assertEquals("Usuário inválido.", e.getMessage());
 		}
 	}
-	
+
 	@Test
-	public void CT10UC06CadastrarLivro_com_usuario_valido() {
+	public void CT11UC06CadastrarLivro_com_usuario_valido() {
 		assertEquals(usuario, emprestimo.getUsuario());
 	}
 }

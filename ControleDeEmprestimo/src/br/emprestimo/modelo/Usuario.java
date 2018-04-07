@@ -2,6 +2,7 @@ package br.emprestimo.modelo;
 
 public class Usuario {
 	private String ra;
+
 	private String nome;
 
 	public String getRa() {
@@ -41,5 +42,5 @@ public class Usuario {
 			return false;
 		return true;
 	}
-	
+
 }

@@ -6,8 +6,11 @@ import java.text.SimpleDateFormat;
 
 public class Emprestimo {
 	private Livro livro;
+
 	private Usuario usuario;
+
 	private String dataEmprestimo;
+
 	private String dataDevolucao;
 
 	public Livro getLivro() {
@@ -15,6 +18,9 @@ public class Emprestimo {
 	}
 
 	public void setLivro(Livro livro) {
+		if (livro == null) {
+			throw new RuntimeException("Livro inválido");
+		}
 		this.livro = livro;
 	}
 
@@ -23,6 +29,9 @@ public class Emprestimo {
 	}
 
 	public void setUsuario(Usuario usuario) {
+		if (usuario == null) {
+			throw new RuntimeException("Usuário inválido");
+		}
 		this.usuario = usuario;
 	}
 
@@ -31,7 +40,11 @@ public class Emprestimo {
 	}
 
 	public void setDataEmprestimo(String dataEmprestimo) {
-		this.dataEmprestimo = dataEmprestimo;
+		if (validaData(dataEmprestimo)) {
+			this.dataEmprestimo = dataEmprestimo;
+		} else {
+			throw new RuntimeException("Data inválida.");
+		}
 	}
 
 	public String getDataDevolucao() {
@@ -53,6 +66,7 @@ public class Emprestimo {
 			df.parse(data); // data válida
 			return true;
 		} catch (ParseException ex) {
+			ex.getMessage();
 			return false;
 		}
 	}

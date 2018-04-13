@@ -6,6 +6,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import br.emprestimo.dadosDeTeste.obtemLivro;
 import br.emprestimo.modelo.Livro;
 import br.emprestimo.modelo.Usuario;
 import br.emprestimo.servico.ServicoEmprestimo;
@@ -13,20 +14,18 @@ import br.emprestimo.servico.ServicoEmprestimo;
 public class UC06CadastrarLivro {
 
 	public static Livro livro;
+	public static obtemLivro obtemLivro;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		livro = new Livro();
-		livro.setIsbn("121212");
-		livro.setTitulo("Engenharia de Software");
-		livro.setAutor("Pressman");
+		livro = obtemLivro.comDadosValidos();
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 	}
 
-	@Test(expected = RuntimeException.class)
+	@Test
 	public void CT01UC06CadastrarLivro_com_isbn_invalido_branco() {
 		try {
 			livro.setIsbn("");
@@ -36,7 +35,7 @@ public class UC06CadastrarLivro {
 		}
 	}
 
-	@Test(expected = RuntimeException.class)
+	@Test
 	public void CT02UC06CadastrarLivro_com_isbn_invalido_nulo() {
 		try {
 			livro.setIsbn(null);
@@ -51,7 +50,7 @@ public class UC06CadastrarLivro {
 		assertEquals("121212", livro.getIsbn());
 	}
 
-	@Test(expected = RuntimeException.class)
+	@Test
 	public void CT04UC06CadastrarLivro_com_titulo_invalido_branco() {
 		try {
 			livro.setTitulo("");
@@ -61,7 +60,7 @@ public class UC06CadastrarLivro {
 		}
 	}
 
-	@Test(expected = RuntimeException.class)
+	@Test
 	public void CT05UC06CadastrarLivro_com_titulo_invalido_nulo() {
 		try {
 			livro.setTitulo(null);
@@ -76,7 +75,7 @@ public class UC06CadastrarLivro {
 		assertEquals("Engenharia de Software", livro.getTitulo());
 	}
 
-	@Test(expected = RuntimeException.class)
+	@Test
 	public void CT07UC06CadastrarLivro_com_autor_invalido_branco() {
 		try {
 			livro.setAutor("");
@@ -86,7 +85,7 @@ public class UC06CadastrarLivro {
 		}
 	}
 
-	@Test(expected = RuntimeException.class)
+	@Test
 	public void CT08UC06CadastrarLivro_com_autor_invalido_nulo() {
 		try {
 			livro.setAutor(null);

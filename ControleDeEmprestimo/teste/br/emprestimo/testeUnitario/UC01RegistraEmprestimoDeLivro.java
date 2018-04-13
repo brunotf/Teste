@@ -71,21 +71,26 @@ public class UC01RegistraEmprestimoDeLivro {
 
 	@Test
 	public void CT05UC01FB_registrar_emprestimo_com_sucesso_validacao_da_data() {
-		// acao
+		// ação
 		DateTimeFormatter fmt = DateTimeFormat.forPattern("dd/MM/YYYY");
 		String dataEsperada = new DateTime().plusDays(8).toString(fmt);
 		emprestimo = servico.empresta(livro, usuario);
 		String dataObtida = emprestimo.getDataDevolucao();
-		// verificacao
+		// verificação
 		assertTrue(dataEsperada.equals(dataObtida));
 	}
 
-	@Test(expected = RuntimeException.class)
+	@Test
 	public void CT06UC01FB_registrar_emprestimo_com_data_invalida() {
-		assertFalse(emprestimo.validaData("33/02/2000"));
+		try {
+			emprestimo.setDataEmprestimo("33/02/2018");
+			fail("Deveria lançar uma exceção.");
+		} catch (RuntimeException e) {
+			assertEquals("Data inválida.", e.getMessage());
+		}
 	}
 
-	@Test(expected = RuntimeException.class)
+	@Test
 	public void CT07UC06CadastrarLivro_com_livro_data_emprestimo_invalida() {
 		try {
 			emprestimo.setDataEmprestimo("12-1-2009");
@@ -95,7 +100,7 @@ public class UC01RegistraEmprestimoDeLivro {
 		}
 	}
 
-	@Test(expected = RuntimeException.class)
+	@Test
 	public void CT08UC06CadastrarLivro_com_livro_invalido_nulo() {
 		try {
 			emprestimo.setLivro(null);
@@ -110,7 +115,7 @@ public class UC01RegistraEmprestimoDeLivro {
 		assertEquals(livro, emprestimo.getLivro());
 	}
 
-	@Test(expected = RuntimeException.class)
+	@Test
 	public void CT10UC06CadastrarLivro_com_usuario_invalido_nulo() {
 		try {
 			emprestimo.setUsuario(null);

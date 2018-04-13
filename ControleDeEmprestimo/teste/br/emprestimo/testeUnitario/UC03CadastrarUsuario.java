@@ -9,15 +9,15 @@ import org.junit.Test;
 import br.emprestimo.modelo.Livro;
 import br.emprestimo.modelo.Usuario;
 
-public class UC02CadastrarUsuario {
+public class UC03CadastrarUsuario {
 
 	public static Usuario usuario;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		usuario = new Usuario();
-		usuario.setRa("121212");
-		usuario.setNome("Luiz Paulo");
+		usuario.setRa("11111");
+		usuario.setNome("Jose da Silva");
 
 	}
 
@@ -25,7 +25,7 @@ public class UC02CadastrarUsuario {
 	public static void tearDownAfterClass() throws Exception {
 	}
 
-	@Test(expected = RuntimeException.class)
+	@Test
 	public void CT01UC02CadastrarUsuario_com_ra_invalido_branco() {
 		try {
 			usuario.setRa("");
@@ -35,7 +35,7 @@ public class UC02CadastrarUsuario {
 		}
 	}
 
-	@Test(expected = RuntimeException.class)
+	@Test
 	public void CT02UC02CadastrarUsuario_com_ra_invalido_nulo() {
 		try {
 			usuario.setRa(null);
@@ -47,10 +47,10 @@ public class UC02CadastrarUsuario {
 
 	@Test
 	public void CT03UC02CadastrarUsuario_com_ra_valido() {
-		assertEquals("121212", usuario.getRa());
+		assertEquals("11111", usuario.getRa());
 	}
 
-	@Test(expected = RuntimeException.class)
+	@Test
 	public void CT04UC02CadastrarUsuario_com_nome_invalido_branco() {
 		try {
 			usuario.setNome("");
@@ -60,7 +60,7 @@ public class UC02CadastrarUsuario {
 		}
 	}
 
-	@Test(expected = RuntimeException.class)
+	@Test
 	public void CT05UC02CadastrarUsuario_com_nome_invalido_nulo() {
 		try {
 			usuario.setNome(null);
@@ -72,7 +72,7 @@ public class UC02CadastrarUsuario {
 	
 	@Test
 	public void CT06UC02CadastrarUsuario_com_nome_valido() {
-		assertEquals("Luiz Paulo", usuario.getNome());
+		assertEquals("Jose da Silva", usuario.getNome());
 	}
 	
 	@Test

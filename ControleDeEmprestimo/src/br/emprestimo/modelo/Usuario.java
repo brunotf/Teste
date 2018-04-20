@@ -31,16 +31,16 @@ public class Usuario {
 
 	@Override
 	public boolean equals(Object obj) {
-			// self check
+			// auto verificação
 			if (this == obj)
 				return true;
-			// null check
+			// verificação nula
 			if (obj == null)
 				return false;
-			// type check and cast
+			// verificação de tipo e cast
 			if (getClass() != obj.getClass())
 				return false;
-			// field comparison
+			// comparação de atributos
 			Usuario usuario = (Usuario) obj;
 			return Objects.equals(nome, usuario.nome) && Objects.equals(ra, usuario.ra);
 	}

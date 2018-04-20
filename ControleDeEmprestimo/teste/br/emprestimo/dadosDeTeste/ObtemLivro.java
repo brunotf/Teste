@@ -3,7 +3,7 @@ package br.emprestimo.dadosDeTeste;
 import br.emprestimo.modelo.Livro;
 
 public class ObtemLivro {
-	public Livro comDadosValidos() {
+	public static Livro comDadosValidos() {
 		Livro livro = new Livro();
 		livro.setIsbn("121212");
 		livro.setTitulo("Engenharia de Software");
@@ -11,7 +11,7 @@ public class ObtemLivro {
 		return livro;
 	}
 
-	public Livro comDadosValidosISBNDiferente() {
+	public static Livro comDadosValidosISBNDiferente() {
 		Livro livro = new Livro();
 		livro.setIsbn("333666");
 		livro.setTitulo("Engenharia de Software");
@@ -19,7 +19,7 @@ public class ObtemLivro {
 		return livro;
 	}
 
-	public Livro comDadosValidosTituloDiferente() {
+	public static Livro comDadosValidosTituloDiferente() {
 		Livro livro = new Livro();
 		livro.setIsbn("121212");
 		livro.setTitulo("UML Aplicada");
@@ -27,7 +27,7 @@ public class ObtemLivro {
 		return livro;
 	}
 
-	public Livro comDadosValidosTituloISBNDiferente() {
+	public static Livro comDadosValidosTituloISBNDiferente() {
 		Livro livro = new Livro();
 		livro.setIsbn("555666");
 		livro.setTitulo("Como Programar");
@@ -35,13 +35,13 @@ public class ObtemLivro {
 		return livro;
 	}
 
-	public Livro comISBNInvalido_branco() {
+	public static Livro comISBNInvalido_branco() {
 		Livro livro = new Livro();
 		livro.setIsbn("");
 		return livro;
 	}
 
-	public Livro comISBNInvalido_nulo() {
+	public static Livro comISBNInvalido_nulo() {
 		Livro livro = new Livro();
 		livro.setIsbn(null);
 		return livro;

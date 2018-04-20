@@ -1,5 +1,7 @@
 package br.emprestimo.modelo;
 
+import java.util.Objects;
+
 public class Livro {
 	private String isbn;
 
@@ -38,6 +40,22 @@ public class Livro {
 			throw new RuntimeException("Autor inválido.");
 		}
 		this.autor = autor;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		// auto comparação
+		if (this == obj)
+			return true;
+		// comparação nula
+		if (obj == null)
+			return false;
+		// comparação de tipo e cast
+		if (getClass() != obj.getClass())
+			return false;
+		// comparação de atributos
+		Livro livro = (Livro) obj;
+		return Objects.equals(isbn, livro.isbn) && Objects.equals(titulo, livro.titulo);
 	}
 
 }

@@ -1,5 +1,7 @@
 package br.emprestimo.modelo;
 
+import java.util.Objects;
+
 public class Usuario {
 	private String ra;
 
@@ -29,24 +31,18 @@ public class Usuario {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Usuario other = (Usuario) obj;
-		if (nome == null) {
-			if (other.nome != null)
+			// self check
+			if (this == obj)
+				return true;
+			// null check
+			if (obj == null)
 				return false;
-		} else if (!nome.equals(other.nome))
-			return false;
-		if (ra == null) {
-			if (other.ra != null)
+			// type check and cast
+			if (getClass() != obj.getClass())
 				return false;
-		} else if (!ra.equals(other.ra))
-			return false;
-		return true;
+			// field comparison
+			Usuario usuario = (Usuario) obj;
+			return Objects.equals(nome, usuario.nome) && Objects.equals(ra, usuario.ra);
 	}
 
 }

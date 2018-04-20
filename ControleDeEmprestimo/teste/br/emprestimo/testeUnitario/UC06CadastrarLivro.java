@@ -6,19 +6,30 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import br.emprestimo.dadosDeTeste.obtemLivro;
+import br.emprestimo.dadosDeTeste.ObtemLivro;
 import br.emprestimo.modelo.Livro;
-import br.emprestimo.modelo.Usuario;
-import br.emprestimo.servico.ServicoEmprestimo;
 
 public class UC06CadastrarLivro {
 
 	public static Livro livro;
-	public static obtemLivro obtemLivro;
+	public static Livro livro2;
+	public static Livro livroISBN;
+	public static Livro livroTitulo;
+	public static Livro livroTituloISBN;
+	public static ObtemLivro obtemLivro;
+	public static Object o;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		livro = obtemLivro.comDadosValidos();
+		livro2 = obtemLivro.comDadosValidos();
+		livroISBN = obtemLivro.comDadosValidosISBNDiferente();
+		livroTitulo = obtemLivro.comDadosValidosTituloDiferente();
+		livroTituloISBN = obtemLivro.comDadosValidosTituloISBNDiferente();
+		
+		o = new Object();
+		
+		
 	}
 
 	@AfterClass
@@ -98,6 +109,41 @@ public class UC06CadastrarLivro {
 	@Test
 	public void CT09UC06CadastrarLivro_com_autor_valido() {
 		assertEquals("Pressman", livro.getAutor());
+	}
+	
+	@Test
+	public void CT10UC06CadastrarLivro_com_objeto_valido() {
+		assertTrue(livro.equals(livro));
+	}
+	
+	@Test
+	public void CT11UC06CadastrarLivro_com_objeto_invalido_nulo() {
+		assertFalse(livro.equals(null));
+	}
+	
+	@Test
+	public void CT12UC06CadastrarLivro_com_objeto_invalido_object() {
+		assertFalse(livro.equals(o));
+	}
+	
+	@Test
+	public void CT13UC06CadastrarLivro_com_objeto_valido_ISBN_diferente() {
+		assertFalse(livro.equals(livroISBN));
+	}
+	
+	@Test
+	public void CT14UC06CadastrarLivro_com_objeto_valido_titulo_diferente() {
+		assertFalse(livro.equals(livroTitulo));
+	}
+	
+	@Test
+	public void CT15UC06CadastrarLivro_com_objeto_valido_titulo_ISBN_diferente() {
+		assertFalse(livro.equals(livroTituloISBN));
+	}
+	
+	@Test
+	public void CT16UC06CadastrarLivro_com_objeto_validos_iguais_diferentes() {
+		assertTrue(livro.equals(livro2));
 	}
 
 }

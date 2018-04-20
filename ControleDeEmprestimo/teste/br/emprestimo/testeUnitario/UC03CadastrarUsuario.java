@@ -6,18 +6,29 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import br.emprestimo.dadosDeTeste.ObtemUsuario;
 import br.emprestimo.modelo.Livro;
 import br.emprestimo.modelo.Usuario;
 
 public class UC03CadastrarUsuario {
 
 	public static Usuario usuario;
+	public static Usuario usuario2;
+	public static Usuario usuarioNome;
+	public static Usuario usuarioRa;
+	public static Usuario usuarioNomeRa;
+	public static Livro livro;
+	public static Object o;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		usuario = new Usuario();
-		usuario.setRa("11111");
-		usuario.setNome("Jose da Silva");
+		usuario = ObtemUsuario.obtemUsuarioDadosValidos();
+		usuario2 = ObtemUsuario.obtemUsuarioDadosValidos();
+		usuarioNome = ObtemUsuario.obtemUsuarioNomeValidoDiferente();
+		usuarioRa = ObtemUsuario.obtemUsuarioRaValidoDiferente();
+		usuarioNomeRa = ObtemUsuario.obtemUsuarioNomeRaValidoDiferente();
+		
+		o = new Object(); 
 
 	}
 
@@ -77,11 +88,37 @@ public class UC03CadastrarUsuario {
 	
 	@Test
 	public void CT07UC02CadastrarUsuario_com_objeto_valido() {
-		assertFalse(usuario.equals(usuario));
+		assertTrue(usuario.equals(usuario));
 	}
 	
 	@Test
 	public void CT08UC02CadastrarUsuario_com_objeto_invalido() {
 		assertFalse(usuario.equals(null));
 	}
+	
+	@Test
+	public void CT09UC02CadastrarUsuario_com_objeto_invalido() {
+		assertFalse(usuario.equals(o));
+	}
+	
+	@Test
+	public void CT10UC02CadastrarUsuario_com_objetos_valido_nome_diferente() {
+		assertFalse(usuario.equals(usuarioNome));
+	}
+	
+	@Test
+	public void CT11UC02CadastrarUsuario_com_objetos_validos_ra_diferente() {
+		assertFalse(usuario.equals(usuarioRa));
+	}
+	
+	@Test
+	public void CT12UC02CadastrarUsuario_com_objetos_validos_nome_ra_diferente() {
+		assertFalse(usuario.equals(usuarioNomeRa));
+	}
+	
+	@Test
+	public void CT13UC02CadastrarUsuario_com_objetos_validos_nome_ra_diferente() {
+		assertTrue(usuario.equals(usuario2));
+	}
+	
 }
